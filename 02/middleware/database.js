@@ -9,7 +9,7 @@ fs.readdirSync(models)
 .filter(file=> ~file.search(/\.js$/))
 .forEach(file=>require(resolve(models,file)))
 
-export const database = app=>{
+module.exports = app=>{
   mongoose.set('debug',true)
 
   mongoose.connect(config.db,{useNewUrlParser:true})
@@ -27,10 +27,14 @@ export const database = app=>{
 
      const Test = mongoose.model('Test')
 
-     const existTest = await Test.find().exec()
+     const count = await Test.count().exec()
 
-     if(!existTest){
-
+     if (count<2) {
+        let test = new Test({
+          test: '测试'
+        })
+        await test.save()
      }
+     console.log('初始化项目成功');
   })
 }

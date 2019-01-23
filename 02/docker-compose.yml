@@ -1,19 +1,21 @@
 version: '2'
 
 services:
-  node :
-    build:
-      context: .
-      ports:
-        - "3000:3000"
-      networks:
-        - nodeapp-network
-      depends_on:
-        - mongodb
+
+  node:
+    build: .
+    ports:
+      - "3001:3001"
+    networks:
+      - nodeapp-network
+    depends_on:
+      - mongodb
+
   mongodb:
     image: mongo
     networks:
       - nodeapp-network
+
 networks:
   nodeapp-network:
     driver: bridge
