@@ -1,0 +1,7 @@
+*.pyc
+.vscode
+.idea/
+Pipfile.lock
+project.config.json
+01/node_modules
+02/node_modules
